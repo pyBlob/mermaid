@@ -240,45 +240,31 @@ verticeStatement:
         {$$ = [$1];}
     ;
 
-vertex:  alphaNum SQS text SQE
-        {$$ = $1;yy.addVertex($1,$3,'square');}
-    |  alphaNum SQS text SQE spaceList
+vertex:
+      vertexWithoutSpaceList
+    | vertexWithoutSpaceList spaceList
+    ;
+
+vertexWithoutSpaceList:
+      alphaNum SQS text SQE
         {$$ = $1;yy.addVertex($1,$3,'square');}
     | alphaNum PS PS text PE PE
         {$$ = $1;yy.addVertex($1,$4,'circle');}
-    | alphaNum PS PS text PE PE spaceList
-        {$$ = $1;yy.addVertex($1,$4,'circle');}
     | alphaNum '(-' text '-)'
-        {$$ = $1;yy.addVertex($1,$3,'ellipse');}
-    | alphaNum '(-' text '-)' spaceList
         {$$ = $1;yy.addVertex($1,$3,'ellipse');}
     | alphaNum PS text PE
         {$$ = $1;yy.addVertex($1,$3,'round');}
-    | alphaNum PS text PE spaceList
-        {$$ = $1;yy.addVertex($1,$3,'round');}
     | alphaNum DIAMOND_START text DIAMOND_STOP
-        {$$ = $1;yy.addVertex($1,$3,'diamond');}
-    | alphaNum DIAMOND_START text DIAMOND_STOP spaceList
         {$$ = $1;yy.addVertex($1,$3,'diamond');}
     | alphaNum TAGEND text SQE
         {$$ = $1;yy.addVertex($1,$3,'odd');}
-    | alphaNum TAGEND text SQE spaceList
-        {$$ = $1;yy.addVertex($1,$3,'odd');}
     | alphaNum TAGSTART text SQE
-        {$$ = $1;yy.addVertex($1,$3,'inv_odd');}
-    | alphaNum TAGSTART text SQE spaceList
         {$$ = $1;yy.addVertex($1,$3,'inv_odd');}
     | alphaNum SQS text SQE TAGSTART
         {$$ = $1;yy.addVertex($1,$3,'odd_right');}
-    | alphaNum SQS text SQE TAGSTART spaceList
-        {$$ = $1;yy.addVertex($1,$3,'odd_right');}
     | alphaNum SQS text SQE TAGEND
         {$$ = $1;yy.addVertex($1,$3,'inv_odd_right');}
-    | alphaNum SQS text SQE TAGEND spaceList
-        {$$ = $1;yy.addVertex($1,$3,'inv_odd_right');}
     | alphaNum
-        {$$ = $1;yy.addVertex($1);}
-    | alphaNum spaceList
         {$$ = $1;yy.addVertex($1);}
     ;
 
