@@ -103,8 +103,14 @@ export const addVertices = function (vert, g) {
       case 'odd':
         _shape = 'rect_left_inv_arrow'
         break
+      case 'inv_odd':
+        _shape = 'rect_left_arrow'
+        break
       case 'odd_right':
-        _shape = 'rect_left_inv_arrow'
+        _shape = 'rect_right_inv_arrow'
+        break
+      case 'inv_odd_right':
+        _shape = 'rect_right_arrow'
         break
       case 'circle':
         _shape = 'circle'
@@ -354,6 +360,28 @@ export const draw = function (text, id, isDot) {
     return shapeSvg
   }
 
+  // Add custom shape for box with arrow on left side
+  render.shapes().rect_left_arrow = function (parent, bbox, node) {
+    const w = bbox.width
+    const h = bbox.height
+    const points = [
+      { x: h / 2, y: 0 },
+      { x: w, y: 0 },
+      { x: w, y: -h },
+      { x: h / 2, y: -h },
+      { x: 0, y: -h / 2 }
+    ]
+    const shapeSvg = parent.insert('polygon', ':first-child')
+      .attr('points', points.map(function (d) {
+        return d.x + ',' + d.y
+      }).join(' '))
+      .attr('transform', 'translate(' + (-w / 2) + ',' + (h * 2 / 4) + ')')
+    node.intersect = function (point) {
+      return dagreD3.intersect.polygon(node, points, point)
+    }
+    return shapeSvg
+  }
+
   // Add custom shape for box with inverted arrow on right side
   render.shapes().rect_right_inv_arrow = function (parent, bbox, node) {
     const w = bbox.width
@@ -363,6 +391,28 @@ export const draw = function (text, id, isDot) {
       { x: w + h / 2, y: 0 },
       { x: w, y: -h / 2 },
       { x: w + h / 2, y: -h },
+      { x: 0, y: -h }
+    ]
+    const shapeSvg = parent.insert('polygon', ':first-child')
+      .attr('points', points.map(function (d) {
+        return d.x + ',' + d.y
+      }).join(' '))
+      .attr('transform', 'translate(' + (-w / 2) + ',' + (h * 2 / 4) + ')')
+    node.intersect = function (point) {
+      return dagreD3.intersect.polygon(node, points, point)
+    }
+    return shapeSvg
+  }
+
+  // Add custom shape for box with arrow on right side
+  render.shapes().rect_right_arrow = function (parent, bbox, node) {
+    const w = bbox.width
+    const h = bbox.height
+    const points = [
+      { x: 0, y: 0 },
+      { x: w - h / 2, y: 0 },
+      { x: w, y: -h / 2 },
+      { x: w - h / 2, y: -h },
       { x: 0, y: -h }
     ]
     const shapeSvg = parent.insert('polygon', ':first-child')
