@@ -21,6 +21,7 @@
 "class"               return 'CLASS';
 "click"               return 'CLICK';
 "graph"               return 'GRAPH';
+"use_root"            return 'USE_ROOT';
 "subgraph"            return 'subgraph';
 "end"\b\s*            return 'end';
 "LR"                  return 'DIR';
@@ -152,7 +153,9 @@
 
 %% /* language grammar */
 
-mermaidDoc: graphConfig document;
+mermaidDoc: graphConfig document
+    {$$=yy.addRoot($2);}
+    ;
 
 document
 	: /* empty */
@@ -177,16 +180,35 @@ line
 graphConfig
     : SPACE graphConfig
     | NEWLINE graphConfig
-    | GRAPH SPACE DIR FirstStmtSeperator
-        { yy.setDirection($3);$$ = $3;}
-    | GRAPH SPACE TAGEND FirstStmtSeperator
-        { yy.setDirection("LR");$$ = $3;}
-    | GRAPH SPACE TAGSTART FirstStmtSeperator
-        { yy.setDirection("RL");$$ = $3;}
-    | GRAPH SPACE UP FirstStmtSeperator
-        { yy.setDirection("BT");$$ = $3;}
-    | GRAPH SPACE DOWN FirstStmtSeperator
-        { yy.setDirection("TB");$$ = $3;}
+    | GRAPH SPACE graphConfigList FirstStmtSeperator
+    ;
+
+graphConfigList:
+      graphConfigList SPACE graphConfigItem
+    | graphConfigItem
+    ;
+
+graphConfigItem:
+      graphConfigType
+    | graphConfigDirection
+    ;
+
+graphConfigType:
+     USE_ROOT
+        { yy.setUseRoot(true); }
+    ;
+
+graphConfigDirection:
+      DIR
+        { yy.setDirection($1); }
+    | TAGEND
+        { yy.setDirection("LR"); }
+    | TAGSTART
+        { yy.setDirection("RL"); }
+    | UP
+        { yy.setDirection("BT"); }
+    | DOWN
+        { yy.setDirection("TB"); }
     ;
 
 ending: endToken ending

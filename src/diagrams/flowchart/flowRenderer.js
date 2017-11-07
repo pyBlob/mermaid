@@ -287,8 +287,13 @@ export const draw = function (text, id, isDot) {
 
   let subG
   const subGraphs = graphDb.getSubGraphs()
+  const rootId = graphDb.getRootId()
+  const useRoot = graphDb.getUseRoot()
   for (let i = subGraphs.length - 1; i >= 0; i--) {
     subG = subGraphs[i]
+    if (!useRoot && subG.id == rootId)
+      continue;
+
     graphDb.addVertex(subG.id, subG.title, 'group', undefined)
   }
 
@@ -300,6 +305,8 @@ export const draw = function (text, id, isDot) {
   let i = 0
   for (i = subGraphs.length - 1; i >= 0; i--) {
     subG = subGraphs[i]
+    if (!useRoot && subG.id == rootId)
+      continue;
 
     d3.selectAll('cluster').append('text')
 
@@ -309,6 +316,9 @@ export const draw = function (text, id, isDot) {
   }
   addVertices(vert, g)
   addEdges(edges, g)
+
+  if (useRoot && rootId)
+    g.node(rootId).style = "display: none";
 
   // Create the renderer
   const Render = dagreD3.render
@@ -353,7 +363,7 @@ export const draw = function (text, id, isDot) {
       .attr('points', points.map(function (d) {
         return d.x + ',' + d.y
       }).join(' '))
-      .attr('transform', 'translate(' + (-w / 2) + ',' + (h * 2 / 4) + ')')
+      .attr('transform', 'translate(' + (h / 4 - w / 2) + ',' + (h * 2 / 4) + ')')
     node.intersect = function (point) {
       return dagreD3.intersect.polygon(node, points, point)
     }
@@ -397,7 +407,7 @@ export const draw = function (text, id, isDot) {
       .attr('points', points.map(function (d) {
         return d.x + ',' + d.y
       }).join(' '))
-      .attr('transform', 'translate(' + (-w / 2) + ',' + (h * 2 / 4) + ')')
+      .attr('transform', 'translate(' + (-h / 4 - w / 2) + ',' + (h * 2 / 4) + ')')
     node.intersect = function (point) {
       return dagreD3.intersect.polygon(node, points, point)
     }
@@ -496,6 +506,8 @@ export const draw = function (text, id, isDot) {
 
   for (i = 0; i < subGraphs.length; i++) {
     subG = subGraphs[i]
+    if (!useRoot && subG.id == rootId)
+      continue;
 
     if (subG.title !== 'undefined') {
       const clusterRects = document.querySelectorAll('#' + id + ' #' + subG.id + ' rect')
