@@ -1091,6 +1091,26 @@ describe('when parsing ', function () {
     expect(edges.length).toBe(0)
     expect(vert['a'].type).toBe('inv_odd')
   })
+  it('should handle a single odd node using block syntax', function () {
+        // Silly but syntactically correct
+    const res = flow.parser.parse('graph TD;a>[A];')
+
+    const vert = flow.parser.yy.getVertices()
+    const edges = flow.parser.yy.getEdges()
+
+    expect(edges.length).toBe(0)
+    expect(vert['a'].type).toBe('odd')
+  })
+  it('should handle a single inv odd node using block syntax', function () {
+        // Silly but syntactically correct
+    const res = flow.parser.parse('graph TD;a<[A];')
+
+    const vert = flow.parser.yy.getVertices()
+    const edges = flow.parser.yy.getEdges()
+
+    expect(edges.length).toBe(0)
+    expect(vert['a'].type).toBe('inv_odd')
+  })
   it('should handle a single odd right node', function () {
         // Silly but syntactically correct
     const res = flow.parser.parse('graph TD;a[A]<;')

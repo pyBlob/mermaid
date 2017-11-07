@@ -258,7 +258,11 @@ vertexWithoutSpaceList:
         {$$ = $1;yy.addVertex($1,$3,'diamond');}
     | alphaNum TAGEND text SQE
         {$$ = $1;yy.addVertex($1,$3,'odd');}
+    | alphaNum TAGEND SQS text SQE
+        {$$ = $1;yy.addVertex($1,$3,'odd');}
     | alphaNum TAGSTART text SQE
+        {$$ = $1;yy.addVertex($1,$3,'inv_odd');}
+    | alphaNum TAGSTART SQS text SQE
         {$$ = $1;yy.addVertex($1,$3,'inv_odd');}
     | alphaNum SQS text SQE TAGSTART
         {$$ = $1;yy.addVertex($1,$3,'odd_right');}
