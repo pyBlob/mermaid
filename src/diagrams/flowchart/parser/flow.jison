@@ -264,10 +264,18 @@ vertex:  alphaNum SQS text SQE
         {$$ = $1;yy.addVertex($1,$3,'odd');}
     | alphaNum TAGEND text SQE spaceList
         {$$ = $1;yy.addVertex($1,$3,'odd');}
-/*  | alphaNum SQS text TAGSTART
+    | alphaNum TAGSTART text SQE
+        {$$ = $1;yy.addVertex($1,$3,'inv_odd');}
+    | alphaNum TAGSTART text SQE spaceList
+        {$$ = $1;yy.addVertex($1,$3,'inv_odd');}
+    | alphaNum SQS text SQE TAGSTART
         {$$ = $1;yy.addVertex($1,$3,'odd_right');}
-    | alphaNum SQS text TAGSTART spaceList
-        {$$ = $1;yy.addVertex($1,$3,'odd_right');} */
+    | alphaNum SQS text SQE TAGSTART spaceList
+        {$$ = $1;yy.addVertex($1,$3,'odd_right');}
+    | alphaNum SQS text SQE TAGEND
+        {$$ = $1;yy.addVertex($1,$3,'inv_odd_right');}
+    | alphaNum SQS text SQE TAGEND spaceList
+        {$$ = $1;yy.addVertex($1,$3,'inv_odd_right');}
     | alphaNum
         {$$ = $1;yy.addVertex($1);}
     | alphaNum spaceList
