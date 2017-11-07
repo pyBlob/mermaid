@@ -22,7 +22,7 @@ describe('when parsing ', function () {
     expect(edges[0].text).toBe('')
   })
 
-  it('should handle angle bracket ' > ' as direction LR', function () {
+  it('should handle angle bracket \'>\' as direction LR', function () {
     const res = flow.parser.parse('graph >;A-->B;')
 
     const vert = flow.parser.yy.getVertices()
@@ -40,7 +40,7 @@ describe('when parsing ', function () {
     expect(edges[0].text).toBe('')
   })
 
-  it('should handle angle bracket ' < ' as direction RL', function () {
+  it('should handle angle bracket \'<\' as direction RL', function () {
     const res = flow.parser.parse('graph <;A-->B;')
 
     const vert = flow.parser.yy.getVertices()
@@ -58,7 +58,7 @@ describe('when parsing ', function () {
     expect(edges[0].text).toBe('')
   })
 
-  it('should handle caret ' ^ ' as direction BT', function () {
+  it('should handle caret \'^\' as direction BT', function () {
     const res = flow.parser.parse('graph ^;A-->B;')
 
     const vert = flow.parser.yy.getVertices()
