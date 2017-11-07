@@ -1039,6 +1039,7 @@ describe('when parsing ', function () {
     expect(edges.length).toBe(0)
     expect(vert['a'].styles.length).toBe(0)
     expect(vert['a'].type).toBe('square')
+    expect(vert['a'].text).toBe('A')
   })
   it('should handle a single round square node', function () {
         // Silly but syntactically correct
@@ -1050,6 +1051,7 @@ describe('when parsing ', function () {
     expect(edges.length).toBe(0)
     expect(vert['a'].styles.length).toBe(0)
     expect(vert['a'].type).toBe('square')
+    expect(vert['a'].text).toBe('A')
   })
   it('should handle a single circle node', function () {
         // Silly but syntactically correct
@@ -1060,6 +1062,7 @@ describe('when parsing ', function () {
 
     expect(edges.length).toBe(0)
     expect(vert['a'].type).toBe('circle')
+    expect(vert['a'].text).toBe('A')
   })
   it('should handle a single round node', function () {
         // Silly but syntactically correct
@@ -1070,6 +1073,7 @@ describe('when parsing ', function () {
 
     expect(edges.length).toBe(0)
     expect(vert['a'].type).toBe('round')
+    expect(vert['a'].text).toBe('A')
   })
   it('should handle a single odd node', function () {
         // Silly but syntactically correct
@@ -1080,6 +1084,7 @@ describe('when parsing ', function () {
 
     expect(edges.length).toBe(0)
     expect(vert['a'].type).toBe('odd')
+    expect(vert['a'].text).toBe('A')
   })
   it('should handle a single inv odd node', function () {
         // Silly but syntactically correct
@@ -1090,6 +1095,7 @@ describe('when parsing ', function () {
 
     expect(edges.length).toBe(0)
     expect(vert['a'].type).toBe('inv_odd')
+    expect(vert['a'].text).toBe('A')
   })
   it('should handle a single odd node using block syntax', function () {
         // Silly but syntactically correct
@@ -1100,6 +1106,7 @@ describe('when parsing ', function () {
 
     expect(edges.length).toBe(0)
     expect(vert['a'].type).toBe('odd')
+    expect(vert['a'].text).toBe('A')
   })
   it('should handle a single inv odd node using block syntax', function () {
         // Silly but syntactically correct
@@ -1110,6 +1117,7 @@ describe('when parsing ', function () {
 
     expect(edges.length).toBe(0)
     expect(vert['a'].type).toBe('inv_odd')
+    expect(vert['a'].text).toBe('A')
   })
   it('should handle a single odd right node', function () {
         // Silly but syntactically correct
@@ -1120,6 +1128,7 @@ describe('when parsing ', function () {
 
     expect(edges.length).toBe(0)
     expect(vert['a'].type).toBe('odd_right')
+    expect(vert['a'].text).toBe('A')
   })
   it('should handle a single inv odd right node', function () {
         // Silly but syntactically correct
@@ -1130,6 +1139,7 @@ describe('when parsing ', function () {
 
     expect(edges.length).toBe(0)
     expect(vert['a'].type).toBe('inv_odd_right')
+    expect(vert['a'].text).toBe('A')
   })
   it('should handle a single diamond node', function () {
         // Silly but syntactically correct
@@ -1140,6 +1150,7 @@ describe('when parsing ', function () {
 
     expect(edges.length).toBe(0)
     expect(vert['a'].type).toBe('diamond')
+    expect(vert['a'].text).toBe('A')
   })
   it('should handle a single diamond node with html in it', function () {
         // Silly but syntactically correct

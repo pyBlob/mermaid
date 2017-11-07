@@ -148,13 +148,13 @@ case 50:
 this.$ = $$[$0-3];yy.addVertex($$[$0-3],$$[$0-1],'odd');
 break;
 case 51:
-this.$ = $$[$0-4];yy.addVertex($$[$0-4],$$[$0-2],'odd');
+this.$ = $$[$0-4];yy.addVertex($$[$0-4],$$[$0-1],'odd');
 break;
 case 52:
 this.$ = $$[$0-3];yy.addVertex($$[$0-3],$$[$0-1],'inv_odd');
 break;
 case 53:
-this.$ = $$[$0-4];yy.addVertex($$[$0-4],$$[$0-2],'inv_odd');
+this.$ = $$[$0-4];yy.addVertex($$[$0-4],$$[$0-1],'inv_odd');
 break;
 case 54:
 this.$ = $$[$0-4];yy.addVertex($$[$0-4],$$[$0-2],'odd_right');
