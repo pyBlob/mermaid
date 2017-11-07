@@ -7,7 +7,7 @@ let edges = []
 let classes = []
 let subGraphs = []
 let tooltips = {}
-let rootId = undefined
+let rootId
 let useRoot = false
 let subCount = 0
 let direction
@@ -336,21 +336,19 @@ export const addSubGraph = function (list, title) {
   return subGraph.id
 }
 
-export const addRoot = function(list) {
-  const id = addSubGraph(list, "");
-  rootId = id;
+export const addRoot = function (list) {
+  const id = addSubGraph(list, '')
+  rootId = id
 
-  return id;
+  return id
 }
 
-export const setUseRoot = function(newUseRoot)
-{
-  useRoot = newUseRoot;
+export const setUseRoot = function (newUseRoot) {
+  useRoot = newUseRoot
 }
 
-export const getUseRoot = function()
-{
-  return useRoot;
+export const getUseRoot = function () {
+  return useRoot
 }
 
 const getPosForId = function (id) {
@@ -417,8 +415,8 @@ export const getSubGraphs = function () {
   return subGraphs
 }
 
-export const getRootId = function() {
-  return rootId;
+export const getRootId = function () {
+  return rootId
 }
 
 export default {
@@ -445,5 +443,5 @@ export default {
   getSubGraphs,
   getRootId,
   getUseRoot,
-  setUseRoot,
+  setUseRoot
 }

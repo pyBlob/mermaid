@@ -291,8 +291,9 @@ export const draw = function (text, id, isDot) {
   const useRoot = graphDb.getUseRoot()
   for (let i = subGraphs.length - 1; i >= 0; i--) {
     subG = subGraphs[i]
-    if (!useRoot && subG.id == rootId)
-      continue;
+    if (!useRoot && subG.id === rootId) {
+      continue
+    }
 
     graphDb.addVertex(subG.id, subG.title, 'group', undefined)
   }
@@ -305,8 +306,9 @@ export const draw = function (text, id, isDot) {
   let i = 0
   for (i = subGraphs.length - 1; i >= 0; i--) {
     subG = subGraphs[i]
-    if (!useRoot && subG.id == rootId)
-      continue;
+    if (!useRoot && subG.id === rootId) {
+      continue
+    }
 
     d3.selectAll('cluster').append('text')
 
@@ -317,8 +319,9 @@ export const draw = function (text, id, isDot) {
   addVertices(vert, g)
   addEdges(edges, g)
 
-  if (useRoot && rootId)
-    g.node(rootId).style = "display: none";
+  if (useRoot && rootId) {
+    g.node(rootId).style = 'display: none'
+  }
 
   // Create the renderer
   const Render = dagreD3.render
@@ -506,8 +509,9 @@ export const draw = function (text, id, isDot) {
 
   for (i = 0; i < subGraphs.length; i++) {
     subG = subGraphs[i]
-    if (!useRoot && subG.id == rootId)
-      continue;
+    if (!useRoot && subG.id === rootId) {
+      continue
+    }
 
     if (subG.title !== 'undefined') {
       const clusterRects = document.querySelectorAll('#' + id + ' #' + subG.id + ' rect')
